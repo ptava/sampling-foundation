@@ -447,6 +447,17 @@ void Foam::probes::topoChange(const polyTopoChangeMap& map)
 }
 
 
+void Foam::probes::distribute(const polyDistributionMap& map)
+{
+    DebugInfo<< "probes: distribute" << endl;
+
+    if (fixedLocations_)
+    {
+        findElements(mesh_);
+    }
+}
+
+
 void Foam::probes::mapMesh(const polyMeshMap& map)
 {
     DebugInfo<< "probes: mapMesh" << endl;

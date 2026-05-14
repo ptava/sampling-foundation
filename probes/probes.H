@@ -181,7 +181,7 @@ private:
 public:
 
     //- Runtime type information
-    TypeName("probes");
+    TypeName("myprobes");
 
 
     // Constructors
@@ -239,6 +239,9 @@ public:
 
         //- Update topology using the given map
         virtual void topoChange(const polyTopoChangeMap&);
+
+        //- Update topology using the given distribution map
+        virtual void distribute(const polyDistributionMap&);
 
         //- Update from another mesh using the given map
         virtual void mapMesh(const polyMeshMap&);

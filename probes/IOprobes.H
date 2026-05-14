@@ -33,7 +33,6 @@ Description
 #define IOprobes_H
 
 #include "probes.H"
-#include "patchProbes.H"
 #include "IOOutputFilter.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
@@ -41,7 +40,6 @@ Description
 namespace Foam
 {
     typedef IOOutputFilter<probes> IOprobes;
-    typedef IOOutputFilter<patchProbes> IOpatchProbes;
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
