@@ -1,4 +1,4 @@
-probes/probes.C
-probes/probesGrouping.C
+probes/myprobes.C
+probes/myprobesGrouping.C
 
 LIB = $(FOAM_USER_LIBBIN)/libmysampling

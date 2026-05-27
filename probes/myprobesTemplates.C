@@ -23,7 +23,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "probes.H"
+#include "myprobes.H"
 #include "volFields.H"
 #include "surfaceFields.H"
 #include "IOmanip.H"
@@ -64,7 +64,7 @@ public:
 // * * * * * * * * * * * * * Private Member Functions  * * * * * * * * * * * //
 
 template<class Type>
-void Foam::probes::sampleAndWrite
+void Foam::myprobes::sampleAndWrite
 (
     const VolField<Type>& vField
 )
@@ -90,7 +90,7 @@ void Foam::probes::sampleAndWrite
 
 
 template<class Type>
-void Foam::probes::sampleAndWrite
+void Foam::myprobes::sampleAndWrite
 (
     const SurfaceField<Type>& sField
 )
@@ -116,7 +116,7 @@ void Foam::probes::sampleAndWrite
 
 
 template<class Type>
-void Foam::probes::sampleAndWrite(const fieldGroup<Type>& fields)
+void Foam::myprobes::sampleAndWrite(const fieldGroup<Type>& fields)
 {
     forAll(fields, fieldi)
     {
@@ -143,7 +143,7 @@ void Foam::probes::sampleAndWrite(const fieldGroup<Type>& fields)
 
 
 template<class Type>
-void Foam::probes::sampleAndWriteSurfaceFields(const fieldGroup<Type>& fields)
+void Foam::myprobes::sampleAndWriteSurfaceFields(const fieldGroup<Type>& fields)
 {
     forAll(fields, fieldi)
     {
@@ -173,7 +173,7 @@ void Foam::probes::sampleAndWriteSurfaceFields(const fieldGroup<Type>& fields)
 
 template<class Type>
 Foam::tmp<Foam::Field<Type>>
-Foam::probes::sample
+Foam::myprobes::sample
 (
     const VolField<Type>& vField
 ) const
@@ -229,7 +229,7 @@ Foam::probes::sample
 
 template<class Type>
 Foam::tmp<Foam::Field<Type>>
-Foam::probes::sample(const word& fieldName) const
+Foam::myprobes::sample(const word& fieldName) const
 {
     return sample
     (
@@ -243,7 +243,7 @@ Foam::probes::sample(const word& fieldName) const
 
 template<class Type>
 Foam::tmp<Foam::Field<Type>>
-Foam::probes::sample
+Foam::myprobes::sample
 (
     const SurfaceField<Type>& sField
 ) const
@@ -274,7 +274,7 @@ Foam::probes::sample
 
 template<class Type>
 Foam::tmp<Foam::Field<Type>>
-Foam::probes::sampleSurfaceFields(const word& fieldName) const
+Foam::myprobes::sampleSurfaceFields(const word& fieldName) const
 {
     return sample
     (

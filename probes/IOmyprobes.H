@@ -22,24 +22,24 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Typedef
-    Foam::IOprobes
+    Foam::IOmyprobes
 
 Description
-    Instance of the generic IOOutputFilter for probes.
+    Instance of the generic IOOutputFilter for myprobes.
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef IOprobes_H
-#define IOprobes_H
+#ifndef IOmyprobes_H
+#define IOmyprobes_H
 
-#include "probes.H"
+#include "myprobes.H"
 #include "IOOutputFilter.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 namespace Foam
 {
-    typedef IOOutputFilter<probes> IOprobes;
+    typedef IOOutputFilter<myprobes> IOmyprobes;
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

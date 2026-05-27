@@ -23,7 +23,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "probes.H"
+#include "myprobes.H"
 #include "volFields.H"
 #include "surfaceFields.H"
 #include "IOobjectList.H"
@@ -31,7 +31,7 @@ License
 
 // * * * * * * * * * * * * * Private Member Functions  * * * * * * * * * * * //
 
-void Foam::probes::clearFieldGroups()
+void Foam::myprobes::clearFieldGroups()
 {
     scalarFields_.clear();
     vectorFields_.clear();
@@ -47,7 +47,7 @@ void Foam::probes::clearFieldGroups()
 }
 
 
-Foam::label Foam::probes::appendFieldGroup
+Foam::label Foam::myprobes::appendFieldGroup
 (
     const word& fieldName,
     const word& fieldType
@@ -108,7 +108,7 @@ Foam::label Foam::probes::appendFieldGroup
 }
 
 
-Foam::label Foam::probes::classifyFields()
+Foam::label Foam::myprobes::classifyFields()
 {
     label nFields = 0;
     clearFieldGroups();

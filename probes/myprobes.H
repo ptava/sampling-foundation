@@ -22,7 +22,7 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Class
-    Foam::probes
+    Foam::myprobes
 
 Description
     Set of locations to sample.
@@ -30,7 +30,7 @@ Description
     Call write() to sample and write files.
 
 SourceFiles
-    probes.C
+    myprobes.C
 
 \*---------------------------------------------------------------------------*/
 
@@ -57,12 +57,13 @@ class objectRegistry;
 class dictionary;
 class fvMesh;
 class polyTopoChangeMap;
+class polyDistributionMap;
 
 /*---------------------------------------------------------------------------*\
-                           Class probes Declaration
+                           Class myprobes Declaration
 \*---------------------------------------------------------------------------*/
 
-class probes
+class myprobes
 :
     public functionObject,
     public pointField
@@ -144,7 +145,7 @@ protected:
         //- Classify field types, returns the number of fields
         label classifyFields();
 
-        //- Find cells and faces containing probes
+        //- Find cells and faces containing myprobes
         virtual void findElements(const fvMesh&);
 
         //- Classify field type and Open/close file streams,
@@ -187,7 +188,7 @@ public:
     // Constructors
 
         //- Construct from Time and dictionary
-        probes
+        myprobes
         (
             const word& name,
             const Time& time,
@@ -195,11 +196,11 @@ public:
         );
 
         //- Disallow default bitwise copy construction
-        probes(const probes&) = delete;
+        myprobes(const myprobes&) = delete;
 
 
     //- Destructor
-    virtual ~probes();
+    virtual ~myprobes();
 
 
     // Member Functions
@@ -225,7 +226,7 @@ public:
             return elementList_;
         }
 
-        //- Read the probes
+        //- Read the myprobes
         virtual bool read(const dictionary&);
 
         //- Execute, currently does nothing
@@ -276,7 +277,7 @@ public:
     // Member Operators
 
         //- Disallow default bitwise assignment
-        void operator=(const probes&) = delete;
+        void operator=(const myprobes&) = delete;
 };
 
 
@@ -287,7 +288,7 @@ public:
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 #ifdef NoRepository
-    #include "probesTemplates.C"
+    #include "myprobesTemplates.C"
 #endif
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

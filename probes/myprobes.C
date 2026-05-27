@@ -23,9 +23,10 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "probes.H"
+#include "myprobes.H"
 #include "volFields.H"
 #include "polyTopoChangeMap.H"
+#include "polyDistributionMap.H"
 #include "OSspecific.H"
 #include "writeFile.H"
 #include "meshSearch.H"
@@ -35,12 +36,12 @@ License
 
 namespace Foam
 {
-    defineTypeNameAndDebug(probes, 0);
+    defineTypeNameAndDebug(myprobes, 0);
 
     addToRunTimeSelectionTable
     (
         functionObject,
-        probes,
+        myprobes,
         dictionary
     );
 }
@@ -48,11 +49,11 @@ namespace Foam
 
 // * * * * * * * * * * * * Protected Member Functions  * * * * * * * * * * * //
 
-void Foam::probes::findElements(const fvMesh& mesh)
+void Foam::myprobes::findElements(const fvMesh& mesh)
 {
     if (debug)
     {
-        Info<< "probes: resetting sample locations" << endl;
+        Info<< "myprobes: resetting sample locations" << endl;
     }
 
     const meshSearch& searchEngine = meshSearch::New(mesh_);
@@ -96,12 +97,11 @@ void Foam::probes::findElements(const fvMesh& mesh)
 
         if (debug && (elementList_[probei] != -1 || faceList_[probei] != -1))
         {
-            Pout<< "probes : found point " << location
+            Pout<< "myprobes : found point " << location
                 << " in cell " << elementList_[probei]
                 << " and face " << faceList_[probei] << endl;
         }
     }
-
 
     // Check if all probes have been found.
     forAll(elementList_, probei)
@@ -164,10 +164,11 @@ void Foam::probes::findElements(const fvMesh& mesh)
             }
         }
     }
+
 }
 
 
-Foam::label Foam::probes::prepare()
+Foam::label Foam::myprobes::prepare()
 {
     const label nFields = classifyFields();
 
@@ -259,7 +260,7 @@ Foam::label Foam::probes::prepare()
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 
-Foam::probes::probes
+Foam::myprobes::myprobes
 (
     const word& name,
     const Time& t,
@@ -288,13 +289,13 @@ Foam::probes::probes
 
 // * * * * * * * * * * * * * * * * Destructor  * * * * * * * * * * * * * * * //
 
-Foam::probes::~probes()
+Foam::myprobes::~myprobes()
 {}
 
 
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 
-bool Foam::probes::read(const dictionary& dict)
+bool Foam::myprobes::read(const dictionary& dict)
 {
     dict.lookup("probeLocations") >> *this;
     dict.lookup("fields") >> fields_;
@@ -320,19 +321,19 @@ bool Foam::probes::read(const dictionary& dict)
 }
 
 
-Foam::wordList Foam::probes::fields() const
+Foam::wordList Foam::myprobes::fields() const
 {
     return fields_;
 }
 
 
-bool Foam::probes::execute()
+bool Foam::myprobes::execute()
 {
     return true;
 }
 
 
-bool Foam::probes::write()
+bool Foam::myprobes::write()
 {
     if (size() && prepare())
     {
@@ -353,9 +354,9 @@ bool Foam::probes::write()
 }
 
 
-void Foam::probes::movePoints(const polyMesh& mesh)
+void Foam::myprobes::movePoints(const polyMesh& mesh)
 {
-    DebugInfo<< "probes: movePoints" << endl;
+    DebugInfo<< "myprobes: movePoints" << endl;
 
     if (fixedLocations_ && &mesh == &mesh_)
     {
@@ -364,9 +365,9 @@ void Foam::probes::movePoints(const polyMesh& mesh)
 }
 
 
-void Foam::probes::topoChange(const polyTopoChangeMap& map)
+void Foam::myprobes::topoChange(const polyTopoChangeMap& map)
 {
-    DebugInfo<< "probes: topoChange" << endl;
+    DebugInfo<< "myprobes: topoChange" << endl;
 
     if (&map.mesh() != &mesh_)
     {
@@ -381,7 +382,7 @@ void Foam::probes::topoChange(const polyTopoChangeMap& map)
     {
         if (debug)
         {
-            Info<< "probes: remapping sample locations" << endl;
+            Info<< "myprobes: remapping sample locations" << endl;
         }
 
         // 1. Update cells
@@ -447,9 +448,9 @@ void Foam::probes::topoChange(const polyTopoChangeMap& map)
 }
 
 
-void Foam::probes::distribute(const polyDistributionMap& map)
+void Foam::myprobes::distribute(const polyDistributionMap& map)
 {
-    DebugInfo<< "probes: distribute" << endl;
+    DebugInfo<< "myprobes: distribute" << endl;
 
     if (fixedLocations_)
     {
@@ -458,9 +459,9 @@ void Foam::probes::distribute(const polyDistributionMap& map)
 }
 
 
-void Foam::probes::mapMesh(const polyMeshMap& map)
+void Foam::myprobes::mapMesh(const polyMeshMap& map)
 {
-    DebugInfo<< "probes: mapMesh" << endl;
+    DebugInfo<< "myprobes: mapMesh" << endl;
 
     findElements(mesh_);
 }
